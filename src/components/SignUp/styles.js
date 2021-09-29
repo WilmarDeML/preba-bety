@@ -92,6 +92,11 @@ export const StyledForm = styled.form`
     font-weight: bold;
     color: black;
     text-decoration: none;
+    text-align: center;
+  }
+
+  .linkButton{
+    font-weight: normal;
   }
 
   .footer {

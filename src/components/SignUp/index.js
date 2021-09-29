@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import iconAtras from '../../img/atras.png'
 import mostrar from '../../img/mostrar.png'
 import { useState } from "react";
-import { verificarExpresion } from '../../validaciones/validaRegex'
+import { verificarInfoSignup } from '../../validaciones/validaRegex'
 import { mostrarContrasena } from '../../validaciones/mostrarPass'
 
 export default function SignupForm() {
@@ -25,7 +25,7 @@ export default function SignupForm() {
         [e.target.name]: e.target.value
     })
 
-    setErrors(verificarExpresion({
+    setErrors(verificarInfoSignup({
       ...info,
       [e.target.name]: e.target.value
     }))

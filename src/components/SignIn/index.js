@@ -2,7 +2,7 @@ import React from "react";
 import { StyledForm } from "../SignUp/styles";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { verificarExpresion } from '../../validaciones/validaRegex'
+import { verificarInfoSignin } from '../../validaciones/validaRegex'
 import { mostrarContrasena } from "../../validaciones/mostrarPass";
 import mostrar from '../../img/mostrar.png'
 
@@ -13,7 +13,10 @@ const SigninForm = () => {
     password: undefined
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    email: undefined,
+    password: undefined
+  });
 
   const handleInputChange = e => {
     setInfo({
@@ -21,17 +24,17 @@ const SigninForm = () => {
         [e.target.name]: e.target.value
     })
 
-    setErrors(verificarExpresion({
+    setErrors(verificarInfoSignin({
       ...info,
       [e.target.name]: e.target.value
     }))
-
+    
     console.log(errors)
   };
     
   const handleSubmit = e => {
 		e.preventDefault();
-
+    // Aqúí va el código para verificar en base de datos la información del usuario
 	}
   
   return (
@@ -66,8 +69,16 @@ const SigninForm = () => {
 
       <p><Link to='/recuperar' className='link'>Olvidé mi contraseña</Link></p>
 
-      <button className='ingresar'>Ingresar</button>
-      
+      {/* Botón que hará el submit para comprobar que está registrado 
+        <button onClick={handleSubmit} className='ingresar'>Ingresar</>
+      */}
+
+      <Link 
+        to={!errors.email && !errors.password ? `/user/${info.email}` : `/signin`} 
+        className='link ingresar linkButton'>
+          Ingresar
+      </Link>
+
       <div className='footer'>
         <h1>¿No tienes una cuenta?</h1>      
         <label><Link to='/signup' className='link'>Registrate</Link> </label> 
