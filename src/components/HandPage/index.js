@@ -5,8 +5,8 @@ import { StyledDiv } from "../SignUp/styles";
 const Principal = () => (
     <>
     <StyledDiv>
-        <Link to='/signup' className='link'>Registrar Empresa</Link>
-        <Link to='/signin' className='link'>Ingresar a mi cuenta</Link>
+        <Link to='/register/signup' className='link'>Registrar Empresa</Link>
+        <Link to='/register/signin' className='link'>Ingresar a mi cuenta</Link>
     </StyledDiv>
     </>
 )

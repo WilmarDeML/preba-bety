@@ -67,21 +67,21 @@ const SigninForm = () => {
 
       {errors.password && (<span className='error'>{errors.password}</span>)}
 
-      <p><Link to='/recuperar' className='link'>Olvidé mi contraseña</Link></p>
+      <p><Link to='/register/recuperar' className='link'>Olvidé mi contraseña</Link></p>
 
       {/* Botón que hará el submit para comprobar que está registrado 
         <button onClick={handleSubmit} className='ingresar'>Ingresar</>
       */}
 
       <Link 
-        to={!errors ? `/user/${info.email}` : `/signin`} 
+        to={!errors.password && !errors.email ? `/user/${info.email}|${info.password}` : `/register/signin`} 
         className='link ingresar linkButton'>
           Ingresar
       </Link>
 
       <div className='footer'>
         <h1>¿No tienes una cuenta?</h1>      
-        <label><Link to='/signup' className='link'>Registrate</Link> </label> 
+        <label><Link to='/register/signup' className='link'>Registrate</Link> </label> 
       </div>
     </StyledForm>
   );

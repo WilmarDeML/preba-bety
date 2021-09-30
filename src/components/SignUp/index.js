@@ -119,7 +119,7 @@ export default function SignupForm() {
       </div>
 
       <Link 
-        to={!errors && info.terminos.length ? `/signin` : `/signup`} 
+        to={!errors && info.terminos.length ? `/register/signin` : `/register/signup`} 
         className='link ingresar linkButton'>
           Registrar Mi cuenta
       </Link>
@@ -129,7 +129,7 @@ export default function SignupForm() {
         Registrar Mi cuenta
       </button> */}
       
-      <label className='check'>¿Ya tienes una cuenta? <Link to='/signin' className='link'>Inicia sesión</Link></label> 
+      <label className='check'>¿Ya tienes una cuenta? <Link to='/register/signin' className='link'>Inicia sesión</Link></label> 
 
     </StyledForm>
   );

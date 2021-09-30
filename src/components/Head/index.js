@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Head = () => (
     <StyledHead>
-        <Link to='/' className='link'><img src={logo} alt="Logo" /></Link>
+        <Link to='/handling' className='link'><img src={logo} alt="Logo" /></Link>
         <h1>beti</h1>
     </StyledHead>
 )
