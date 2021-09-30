@@ -74,7 +74,7 @@ const SigninForm = () => {
       */}
 
       <Link 
-        to={!errors.email && !errors.password ? `/user/${info.email}` : `/signin`} 
+        to={!errors ? `/user/${info.email}` : `/signin`} 
         className='link ingresar linkButton'>
           Ingresar
       </Link>

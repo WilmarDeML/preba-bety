@@ -14,26 +14,40 @@ export default function SignupForm() {
     email: undefined,
     nit: undefined,
     industria: undefined,
-    // password:false,
+    password: undefined,
+    terminos: ''
   });
 
   const [errors, setErrors] = useState({});
 
   const handleInputChange = e => {
+    console.log(e.target.value)
+    
     setInfo({
         ...info,
         [e.target.name]: e.target.value
     })
+
+    if(e.target.name === 'terminos' && info.terminos === 'on'){
+      setInfo({
+        ...info,
+        terminos: ''
+      })
+    }
 
     setErrors(verificarInfoSignup({
       ...info,
       [e.target.name]: e.target.value
     }))
   };
-  
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    //Código para postear info en base de datos
+  }
   return (
     
-    <StyledForm /*onSubmit={SubmitHandler}*/>
+    <StyledForm onSubmit={handleSubmit}>
       <span>
         <img src={iconAtras} alt='Atras' />
         <label>Registra tu negocio</label>
@@ -43,11 +57,12 @@ export default function SignupForm() {
       <input
         type="text"
         onChange={handleInputChange}
-        name="nombreNegocio"
+        name="empresa"
         placeholder="Escribe aquí"
         required
         maxLength='20'
       />
+      {errors.empresa && (<span className='error'>{errors.empresa}</span>)}
 
       <label>Número de NIT</label>
       <input
@@ -91,18 +106,28 @@ export default function SignupForm() {
         <div  onClick={mostrarContrasena}><img src={mostrar} alt='mostrar' /></div>
       </div>
 
+      {errors.password && (<span className='error'>{errors.password}</span>)}
+
       <div className='check'>
           <input
             type="checkbox"
             name="terminos"
+            onChange={handleInputChange}
             required
           />          
           <label for='terminos'>Aceptar <Link to='/terminos' className='link'>Términos y condiciones</Link></label>
       </div>
+
+      <Link 
+        to={!errors && info.terminos.length ? `/signin` : `/signup`} 
+        className='link ingresar linkButton'>
+          Registrar Mi cuenta
+      </Link>
       
-      <button type="submit" value="Sign up" className="registrar">
+      {/* Boton que hará el submit para que los datos vayan a la base de datos */}
+      {/* <button type="submit" value="Sign up" className="registrar">
         Registrar Mi cuenta
-      </button>
+      </button> */}
       
       <label className='check'>¿Ya tienes una cuenta? <Link to='/signin' className='link'>Inicia sesión</Link></label> 
 

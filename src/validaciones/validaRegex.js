@@ -15,7 +15,17 @@ export const verificarInfoSignin = input => {
 
 export const verificarInfoSignup = input => {
     let errors = {}
-  
+    
+    if(!input.empresa?.length) {
+        errors.empresa = 'Debes ingresar el nombre de la empresa'
+    }
+
+    if(!input.email){
+      errors.email = 'Debes ingresar un correo'
+    } else if(
+      !/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(input.email)
+    ) errors.email = 'El formato del correo debe ser texto@texto.texto en minúsculas'
+
     if(!input.nit){
         errors.nit = 'Debes ingresar el NIT de la empresa';
     }else if (!/^[0-9]*$/.test(input.nit)) {
